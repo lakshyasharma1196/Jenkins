@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+
+
+    parameters {
+        string(defaultValue: "", description: "Are you ready?", name: "deployReady")
+        choice(choices: ["TEST", "DEV", "PROD"], description: "Which Environment to Depoy in?", name: "deployEnv")
+        choice(choices: ["eu-west-2a", "eu-west-2b", "eu-west-2c"], description: "Which AZ to Depoy in?", name: "deployAZ")
+        booleanParam(defaultValue: false, description: "Confirm Deployment?", name: "deployConfirm")
+    }
+
+
+    stages{
+        stage("Deploy"){
+            steps{
+                echo "Choice is set to: ${params.deployReady} \n"
+                echo "Choice is set to: ${params.deployEnv} \n"
+                echo "Choice is set to: ${params.deployAZ} \n"
+                echo "Bool is set to: ${params.deployConfirm} \n"
+            }
+        }
+    }
+}
